@@ -2,6 +2,15 @@
 
 >@ author stan#<holdmylife@qq.com>
 
+## USAGE
+
+
+``` $ python3 gene_algorithm ```
+
+## requirements
+
+-   python3
+
 ### Definition
 -   entity
 -   chromosome

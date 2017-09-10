@@ -35,18 +35,24 @@ def rule_four(entity): return sum(
 
 
 def fit(entity):
-    # rule 1,2
     return (rule_one(entity) + rule_two(entity) + rule_three(entity) + rule_four(entity)) / 5
 
 
 def cross_entity(entities):
-    pass
+    entity1 = entities[0]
+    entity2 = entities[1]
+    choose1 = [choices(range(len(entity1))), choices(range(len(entity1[0])))]
+    choose2 = [choices(range(len(entity2))), choices(range(len(entity2[0])))]
+    picked_one = list(entity1[choose1[0]][choose1[1]])
+    picked_two = list(entity2[choose1[0]][choose2[1]])
+    picked_two[4:8], picked_one[4:8] = picked_one[4:8], picked_two[4:8]
+    entity1[choose1[0]][choose1[1]] = ''.join(picked_one)
+    entity1[choose2[0]][choose2[1]] = ''.join(picked_two)
 
 
 def cross(population):
     for i in range(COUNT_OF_CROSS):
         cross_entity(choices(population, k=2))
-    return
 
 
 # mutate
@@ -61,7 +67,5 @@ def mutate_chromosome(chromosome):
 
 
 def mutate(group):
-    count_of_chromosome = sum([len(entity) for entity in group])  # group -> entity -> chromosome -> gene
-    # mutate by times
     for i in range(COUNT_OF_MUTATE):
         mutate_chromosome(choice(choice(group)))

@@ -5,7 +5,7 @@
 
 # algorithm started
 
-from func import generate_population, fit, choice, mutate
+from func import generate_population, fit, choice, mutate, cross
 
 from args import *
 
@@ -29,3 +29,4 @@ while True:  # replace True with convergence threshold or iterate number
 
     # cross and mutate
     mutate(population_dict)
+    cross(population_dict)
