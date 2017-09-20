@@ -15,7 +15,7 @@ def generate_entity():
 
 
 def generate_population():
-    return [i for i in COUNT_OF_GENES]
+    return [generate_entity() for i in range(COUNT_OF_GENES)]
 
 
 def rule_one(entity): return (sum([sum([0 if int(j[5]) % 2 else 1 for j in i[0:4]]) for i in entity])) / 15
@@ -43,15 +43,15 @@ def cross_entity(entities):
     entity2 = entities[1]
     choose1 = [choices(range(len(entity1))), choices(range(len(entity1[0])))]
     choose2 = [choices(range(len(entity2))), choices(range(len(entity2[0])))]
-    picked_one = list(entity1[choose1[0]][choose1[1]])
-    picked_two = list(entity2[choose1[0]][choose2[1]])
+    picked_one = list([entity1[choose1[0][0]][choose1[1][0]]])
+    picked_two = list(entity2[choose1[0][0]][choose2[1][0]])
     picked_two[4:8], picked_one[4:8] = picked_one[4:8], picked_two[4:8]
-    entity1[choose1[0]][choose1[1]] = ''.join(picked_one)
-    entity1[choose2[0]][choose2[1]] = ''.join(picked_two)
+    entity1[choose1[0][0]][choose1[1][0]] = ''.join(picked_one)
+    entity1[choose2[0][0]][choose2[1][0]] = ''.join(picked_two)
 
 
 def cross(population):
-    for i in range(COUNT_OF_CROSS):
+    for i in range( COUNT_OF_CROSS):
         cross_entity(choices(population, k=2))
 
 
